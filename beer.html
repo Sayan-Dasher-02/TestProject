@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Liquor Website</title>
+    <meta charset="UTF-8">
+
+    <head name="viewport" content="width=device-width, initial-scale=1">
+        <style>
+            body {
+                background: #1D2B64;
+                background: -webkit-linear-gradient(to right, #F8CDDA, #1D2B64);
+                background: linear-gradient(to right, #F8CDDA, #1D2B64);
+                font-family: Arial, Helvetica, sans-serif;
+                margin: 0;
+            }
+
+            .Heading {
+                background-color: #030303;
+                top: 0;
+                left: 0;
+                width: 100%;
+                position: sticky;
+                padding-block: 10px;
+
+            }
+
+            h1 {
+                font-family: Audiowide;
+                color: aliceblue;
+            }
+
+            .home {
+                background-color: #3d3d3da6;
+                color: rgba(250, 192, 1, 0.788);
+                top: 0;
+                left: 0;
+                width: 100%;
+                padding-block: 10px;
+                font-family: Permanent Marker;
+            }
+
+            .navbar {
+                background-color: #000000;
+                font-family: Permanent Marker;
+            }
+
+            .nav-list {
+                list-style-type: none;
+                padding: 0;
+                margin: 0;
+                overflow: hidden;
+            }
+
+            .nav-list li a:hover:not(.log) {
+                color: rgba(255, 238, 0, 0.993);
+                background-color: rgba(53, 52, 52, 0.5);
+            }
+
+            a:hover:not(.log) {
+                color: rgba(255, 238, 0, 0.993);
+                background-color: rgba(53, 52, 52, 0.5);
+            }
+
+            .nav-list li {
+                float: left;
+            }
+
+            .log {
+                padding: none;
+                background-color: rgba(255, 127, 80, 0.842);
+                color: #fff;
+                font-weight: bold;
+                font-family: changa;
+                font-size: large;
+                text-decoration: none;
+            }
+
+            .log:hover {
+                color: rgba(255, 127, 80, 0.842);
+                background-color: rgba(99, 98, 98, 0.5);
+            }
+
+            .nav-list li a {
+                margin: 10px;
+                border: 5px black;
+                border-radius: 12px;
+                padding: 5px;
+                color: #fff;
+                font-size: large;
+                text-decoration: none;
+                display: block;
+            }
+
+            .products {
+                text-align: center;
+            }
+
+            .products h2 {
+                color: #2a2626;
+            }
+
+            .product {
+                display: inline-block;
+                margin: 10px;
+                border: 1px solid #ccc;
+                padding: 10px;
+                width: 200px;
+                height: 350px;
+                background-color: #fff;
+                text-align: center;
+                box-sizing: border-box;
+            }
+
+            .product img {
+                width: 100%;
+                height: 200px;
+                object-fit: cover;
+                margin-bottom: 10px;
+            }
+
+            .product h3 {
+                font-size: 1em;
+                margin: 0;
+            }
+
+            .product p {
+                font-size: 1em;
+                margin: 0;
+            }
+
+            .quantity {
+                display: flex;
+                align-items: center;
+                margin-right: 20px;
+            }
+
+            .quantity span {
+                margin-right: 5px;
+            }
+
+            .quantity input {
+                width: 100%;
+            }
+
+            .add-to-cart {
+                margin-left: auto;
+            }
+
+            .add-to-cart a {
+                text-decoration: none;
+                background-color: #007bff;
+                color: #fff;
+                padding: 5px 10px;
+                border-radius: 5px;
+            }
+
+            footer {
+                background-color: #000000;
+                position: fixed;
+                bottom: 0;
+                left: 0;
+                width: 100%;
+                padding-block: 10px;
+                text-align: center;
+            }
+        </style>
+    </head>
+
+<body>
+    <header>
+
+        <div class="Heading">
+            <center>
+                <h1>Liquor Webshop</h1>
+            </center>
+        </div>
+        <nav class="navbar">
+            <ul class="nav-list">
+                <li><a href="#">Beer</a></li>
+                <li><a href="#">Rum</a></li>
+                <li><a href="#">Vodka</a></li>
+                <li><a href="#">Whisky</a></li>
+                <li><a href="viewcart.html">Add to Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+    <section class="products">
+        <h2>Featured Products</h2>
+        <div class="product">
+            <img src="https://products3.imgix.drizly.com/ci-corona-extra-22d971897e230884.jpeg?auto=format%2Ccompress&ch=Width%2CDPR&dpr=2&fm=jpg&h=240&q=20"
+                alt="Product 1">
+            <div>
+                <h3>Corona Extra Lager Mexican Beer</h3>
+                <p>Price: $19.99</p>
+                <div class="quantity">
+                    <span>Quantity:</span>
+                    <input type="number" value="1" min="1">
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://products1.imgix.drizly.com/ci-bud-light-980728905e40c8af.jpeg?auto=format%2Ccompress&ch=Width%2CDPR&dpr=2&fm=jpg&h=240&q=20"
+                alt="Product 2">
+            <div>
+                <br>
+                <h3>Bud Light</h3>
+                <p>Price: $29.99</p>
+                <div class="quantity">
+                    <span>Quantity:</span>
+                    <input type="number" value="1" min="1">
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://products3.imgix.drizly.com/ci-spaten-oktoberfest-0c471bad4ed0fa03.jpeg?auto=format%2Ccompress&ch=Width%2CDPR&dpr=2&fm=jpg&h=240&q=20"
+                alt="Product 3">
+            <div>
+                <br>
+                <h3>Spaten Oktoberfest</h3>
+                <p>Price: $58.99</p>
+                <div class="quantity">
+                    <span>Quantity:</span>
+                    <input type="number" value="1" min="1">
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://products3.imgix.drizly.com/ci-weihenstephan-festbier-f7eb24d1c4924482.png?auto=format%2Ccompress&ch=Width%2CDPR&dpr=2&fm=jpg&h=240&q=20"
+                alt="Product 4">
+            <div>
+                <h3>Weihenstephan Festbier</h3>
+                <p>Price: $55.00</p>
+                <div class="quantity">
+                    <span>Quantity:</span>
+                    <input type="number" value="1" min="1">
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </div>
+
+        <div class="product">
+            <img src="https://products0.imgix.drizly.com/ci-yuengling-lager-4aa51b783d262ff2.png?auto=format%2Ccompress&ch=Width%2CDPR&fm=jpg&q=20"
+                alt="Product 5">
+            <div>
+                <h3>Yuengling Traditional Lager</h3>
+                <p>Price: $59.99</p>
+                <div class="quantity">
+                    <span>Quantity:</span>
+                    <input type="number" value="1" min="1">
+                </div>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+    </section>
+    <footer>
+        <p style="color: #fff;">&copy; 2022 Liquor Website. All rights reserved.</p>
+    </footer>
+    <script>
+        function addToCart(productIndex) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            let existingProduct = cart.find(item => item.productIndex === productIndex);
+
+            if (existingProduct) {
+                existingProduct.quantity++;
+            } else {
+                const product = {
+                    productIndex: productIndex,
+                    imageSrc: document.querySelectorAll('.product img')[productIndex].src,
+                    price: parseFloat(document.querySelectorAll('.product p')[productIndex].textContent.replace('Price: $', '')),
+                    quantity: 1,
+                };
+                cart.push(product);
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+
+            alert('Product added to the cart!');
+        }
+
+        document.querySelectorAll('.add-to-cart').forEach((button, index) => {
+            button.addEventListener('click', () => {
+                addToCart(index);
+            });
+        });
+
+    </script>
+</body>
+
+</html>

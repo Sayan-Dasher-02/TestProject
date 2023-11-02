@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Liquor Webshop Registration Page</title>
+    <style>
+        body {
+            background-image: url("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQMXYYfl8VV81c32Dz_fnTJCt0JgSRyl1JBIA&usqp=CAU");
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: cover;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .Heading {
+            background-color: #030303;
+            top: 0;
+            left: 0;
+            width: 100%;
+            position: sticky;
+            padding-block: 10px;
+
+        }
+
+        .registration-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #0f0f0f6c;
+        }
+
+        h1 {
+            font-size: 36px;
+            margin-bottom: 20px;
+            font-family: Audiowide;
+            color: #f6f4f2de;
+            border-radius: 10px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 50px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            font-size: 18px;
+            margin-bottom: 10px;
+            font-family: Tektur;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .b-register {
+            background-color: #3379a5;
+            color: #d8d8d2fa;
+            border: none;
+            font-family: Changa;
+            font-size: large;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .b-register:hover {
+            background-color: #f5ce87;
+            color: rgb(245, 76, 76)
+        }
+
+        .b-cancel {
+            background-color: #b8b8b581;
+            color: #d86508de;
+            border: none;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            font-family: Changa;
+            font-weight: bold;
+            font-size: large;
+            padding: 10px 20px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #password-strength {
+            margin-top: 10px;
+            font-size: 14px;
+        }
+
+        .strength-weak {
+            color: #ff6347;
+        }
+
+        .strength-medium {
+            color: #ffa500;
+        }
+
+        .strength-strong {
+            color: #008000;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="Heading">
+            <center>
+                <h1>Liquor Webshop</h1>
+            </center>
+        </div>
+    </header>
+    <div class="registration-container">
+        <center>
+            <form name="registration-form" action="Login.html" onsubmit="return validate();">
+                <label for="name">Full Name:</label>
+                <input type="text" name="name" placeholder="Enter your full name">
+
+                <label for="email">Email Address:</label>
+                <input type="email" name="email" placeholder="Enter your email address">
+
+                <label for="password">Password:</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password">
+                <div id="password-strength"></div>
+
+                <label for="confirm-password">Confirm Password:</label>
+                <input type="password" id="confirm-password" name="confirm-password"
+                    placeholder="Confirm your password">
+
+                <button class="b-register" type="submit">Register</button>
+                <br>
+                <button class="b-cancel" onclick="window.location.href='home.html';">Cancel</button>
+                <br>
+                <div class="c">Already have an account? Click <a href="login.html">here</a> to login.</div>
+            </form>
+        </center>
+    </div>
+
+    <script>
+        const passwordInput = document.getElementById('password');
+        const passwordStrength = document.getElementById('password-strength');
+
+        passwordInput.addEventListener('input', () => {
+            const password = passwordInput.value;
+            const strength = calculatePasswordStrength(password);
+
+            if (strength === 'weak') {
+                passwordStrength.innerHTML = 'Password Strength: Weak';
+                passwordStrength.className = 'strength-weak';
+            } else if (strength === 'medium') {
+                passwordStrength.innerHTML = 'Password Strength: Medium';
+                passwordStrength.className = 'strength-medium';
+            } else if (strength === 'strong') {
+                passwordStrength.innerHTML = 'Password Strength: Strong';
+                passwordStrength.className = 'strength-strong';
+            }
+        });
+
+        function calculatePasswordStrength(password) {
+            const strongRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*])(?=.{8,})/;
+            const mediumRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/;
+
+            if (strongRegex.test(password)) {
+                return 'strong';
+            } else if (mediumRegex.test(password)) {
+                return 'medium';
+            } else {
+                return 'weak';
+            }
+        }
+
+        function validate() {
+            const fullName = document.forms['registration-form']['name'].value;
+            const email = document.forms['registration-form']['email'].value;
+            const password = document.forms['registration-form']['password'].value;
+            const confirmPassword = document.forms['registration-form']['confirm-password'].value;
+
+            if (fullName === "") {
+                alert("Please provide your name!");
+                document.forms['registration-form']['name'].focus();
+                return false;
+            }
+
+            if (email === "") {
+                alert("Please provide your Email!");
+                document.forms['registration-form']['email'].focus();
+                return false;
+            } else {
+                const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                if (!emailRegex.test(email)) {
+                    alert("Invalid email address format!");
+                    document.forms['registration-form']['email'].focus();
+                    return false;
+                }
+            }
+
+            if (password === "") {
+                alert("Please provide a password!");
+                document.forms['registration-form']['password'].focus();
+                return false;
+            } else if (calculatePasswordStrength(password) === 'weak') {
+                alert("Password is too weak. It should be at least medium strength.");
+                document.forms['registration-form']['password'].focus();
+                return false;
+            }
+
+            if (confirmPassword !== password) {
+                alert("Passwords do not match!");
+                document.forms['registration-form']['confirm-password'].focus();
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+</body>
+
+</html>

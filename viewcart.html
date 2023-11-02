@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>My Cart</title>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background: #403B4A;
+            background: -webkit-linear-gradient(to right, #E7E9BB, #403B4A);
+            background: linear-gradient(to right, #E7E9BB, #403B4A);
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+        }
+
+        .Heading {
+            background-color: #030303;
+            top: 0;
+            left: 0;
+            width: 100%;
+            position: sticky;
+            padding-block: 10px;
+        }
+
+        h1 {
+            font-family: Audiowide;
+            color: aliceblue;
+        }
+
+        .home {
+            background-color: #3d3d3da6;
+            color: rgba(250, 192, 1, 0.788);
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding-block: 10px;
+            font-family: Permanent Marker;
+        }
+
+        .navbar {
+            background-color: #000000;
+            font-family: Permanent Marker;
+        }
+
+        .nav-list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            overflow: hidden;
+        }
+
+        .nav-list li a:hover:not(.log) {
+            color: rgba(255, 238, 0, 0.993);
+            background-color: rgba(53, 52, 52, 0.5);
+        }
+
+        a:hover:not(.log) {
+            color: rgba(255, 238, 0, 0.993);
+            background-color: rgba(53, 52, 52, 0.5);
+        }
+
+        .nav-list li {
+            float: left;
+        }
+
+        .log {
+            padding: none;
+            background-color: rgba(255, 127, 80, 0.842);
+            color: #fff;
+            font-weight: bold;
+            font-family: changa;
+            font-size: large;
+            text-decoration: none;
+        }
+
+        .log:hover {
+            color: rgba(255, 127, 80, 0.842);
+            background-color: rgba(99, 98, 98, 0.5);
+        }
+
+        .nav-list li a {
+            margin: 10px;
+            border: 5px solid black;
+            /* Fixed border style */
+            border-radius: 12px;
+            padding: 5px;
+            color: #fff;
+            font-size: large;
+            text-decoration: none;
+            display: block;
+        }
+
+        .cart-item {
+            display: flex;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            padding: 10px;
+            background-color: #fff;
+            box-sizing: border-box;
+        }
+
+        .cart-item img {
+            width: 100px;
+            height: auto;
+            margin-right: 10px;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item h3 {
+            font-size: 1em;
+            margin: 0;
+        }
+
+        .cart-item p {
+            font-size: 1em;
+            margin: 0;
+        }
+
+        .cart-item-quantity {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+        }
+
+        .cart-item-quantity span {
+            margin-right: 5px;
+        }
+
+        .cart-item-quantity input {
+            width: 40px;
+        }
+
+        .cart-item-price {
+            font-weight: bold;
+        }
+
+        .total-price {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            padding: 2%;
+        }
+
+        .clear-cart-button {
+            background-color: #ff0000;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .buy-button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        footer {
+            background-color: #000000;
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding-block: 10px;
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+
+        <div class="Heading">
+            <center>
+                <h1>Liquor Webshop</h1>
+            </center>
+        </div>
+        <nav class="navbar">
+            <ul class="nav-list">
+                <li><a href="#">Beer</a></li>
+                <li><a href="#">Rum</a></li>
+                <li><a href="#">Vodka</a></li>
+                <li><a href="#">Whisky</a></li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="viewcart.html">Add to Cart</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div id="cart-items"></div>
+
+    <div class="total-price">Total Price: $<span id="total-price">0.00</span></div>
+
+    <div class="button-container">
+        <button class="buy-button" onclick="buyItems()">Buy Items</button>
+        <button class="clear-cart-button" onclick="clearCart()">Clear Cart</button>
+    </div>
+
+    <footer>
+        <p style="color: #fff;">&copy; 2022 Liquor Website. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function loadCartItems() {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            const cartItemsContainer = document.getElementById('cart-items');
+            const totalPriceElement = document.getElementById('total-price');
+
+            let totalPrice = 0;
+
+            cartItemsContainer.innerHTML = '';
+
+            cartItems.forEach((item, index) => {
+                const productDiv = document.createElement('div');
+                productDiv.classList.add('cart-item');
+                productDiv.innerHTML = `
+          <img src="${item.imageSrc}" alt="Product Image">
+          <div class="cart-item-details">
+            <h3>${item.productName}</h3>
+            <p>Price: $${item.price}</p>
+            <div class="cart-item-quantity">
+              <span>Quantity:</span>
+              <input type="number" value="${item.quantity}" min="1" onchange="updateQuantity(${index}, this.value)">
+            </div>
+          </div>
+          <div class="cart-item-price">$${(item.price * item.quantity).toFixed(2)}</div>
+        `;
+
+                cartItemsContainer.appendChild(productDiv);
+
+                totalPrice += item.price * item.quantity;
+            });
+
+            totalPriceElement.textContent = totalPrice.toFixed(2);
+        }
+
+        function updateQuantity(index, quantity) {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            cartItems[index].quantity = parseInt(quantity, 10);
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            loadCartItems();
+        }
+
+        function removeFromCart(index) {
+            const cartItems = JSON.parse(localStorage.getItem('cart')) || [];
+            cartItems.splice(index, 1);
+            localStorage.setItem('cart', JSON.stringify(cartItems));
+            loadCartItems();
+        }
+
+        function buyItems() {
+            alert('Thank you for your purchase! Your items have been bought.');
+            clearCart();
+        }
+
+        function clearCart() {
+            localStorage.removeItem('cart');
+            loadCartItems();
+        }
+
+        loadCartItems();
+    </script>
+</body>
+
+</html>
